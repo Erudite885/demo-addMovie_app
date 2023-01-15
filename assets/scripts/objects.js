@@ -28,7 +28,7 @@ const addMovieHandler = () => {
   renderMoviesToUI();
 };
 
-const renderMoviesToUI = () => {
+const renderMoviesToUI = (filter = "") => {
   const movieList = document.getElementById("movie-list");
   if (!movies) {
     movieList.classList.remove("visible");
@@ -36,12 +36,17 @@ const renderMoviesToUI = () => {
     movieList.classList.add("visible");
   }
   movieList.innerHTML = "";
-  movies.forEach((movie) => {
+
+  const filteredMovies = !filter
+    ? movies
+    : movies.filter((movie) => movie.info.title.includes(filter));
+
+  filteredMovies.forEach((movie) => {
     const movieElement = document.createElement("li");
-    let text = movie.info.title + "-";
+    let text = movie.info.title + " -";
     for (const key in movie.info) {
       if (key !== "title") {
-        text += ` for ${key}: ages ${movie.info[key]} and above.`;
+        text += ` ${key}: ages ${movie.info[key]} and above.`;
       }
     }
     movieElement.textContent = text;
@@ -49,7 +54,10 @@ const renderMoviesToUI = () => {
   });
 };
 
-const searchMovieHandler = () => {}
+const searchMovieHandler = () => {
+  const filteredTerm = document.getElementById("filter-title");
+  renderMoviesToUI(filteredTerm);
+};
 
 addMovieBtn.addEventListener("click", addMovieHandler);
 searchBtn.addEventListener("click", searchMovieHandler);
