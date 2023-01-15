@@ -38,10 +38,18 @@ const renderMoviesToUI = () => {
   movieList.innerHTML = "";
   movies.forEach((movie) => {
     const movieElement = document.createElement("li");
-    movieElement.textContent = movie.info.title;
+    let text = movie.info.title + "-";
+    for (const key in movie.info) {
+      if (key !== "title") {
+        text += ` for ${key}: ages ${movie.info[key]} and above.`;
+      }
+    }
+    movieElement.textContent = text;
     movieList.append(movieElement);
   });
 };
 
+const searchMovieHandler = () => {}
+
 addMovieBtn.addEventListener("click", addMovieHandler);
-// searchBtn.addEventListener("click");
+searchBtn.addEventListener("click", searchMovieHandler);
