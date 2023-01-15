@@ -27,5 +27,15 @@ const addMovieHandler = () => {
   console.log(newMovie, movies);
 };
 
+const renderMoviesToUI = () => {
+  const movieList = document.getElementById("movie-list");
+  if (!movies) {
+    movieList.classList.remove("visible");
+  } else {
+    movieList.classList.add("visible");
+  }
+  movieList.innerHTML = "";
+};
+
 addMovieBtn.addEventListener("click", addMovieHandler);
 // searchBtn.addEventListener("click");
