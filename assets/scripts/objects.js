@@ -25,6 +25,7 @@ const addMovieHandler = () => {
   };
   movies.push(newMovie);
   console.log(newMovie, movies);
+  renderMoviesToUI();
 };
 
 const renderMoviesToUI = () => {
@@ -35,6 +36,11 @@ const renderMoviesToUI = () => {
     movieList.classList.add("visible");
   }
   movieList.innerHTML = "";
+  movies.forEach((movie) => {
+    const movieElement = document.createElement("li");
+    movieElement.textContent = movie.info.title;
+    movieList.append(movieElement);
+  });
 };
 
 addMovieBtn.addEventListener("click", addMovieHandler);
