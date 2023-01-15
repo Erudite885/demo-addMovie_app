@@ -1,17 +1,31 @@
-const addMovieBtn = document.getElementById('add-movie-btn');
-const searchBtn = document.getElementById('search-btn');
+const addMovieBtn = document.getElementById("add-movie-btn");
+const searchBtn = document.getElementById("search-btn");
+
+const movies = [];
 
 const addMovieHandler = () => {
-  const title = document.getElementById('title').value;
-  const extraName = document.getElementById('extra-name').value;
-  const extraValue = document.getElementById('extra-value').value;
+  const title = document.getElementById("title").value;
+  const extraName = document.getElementById("extra-name").value;
+  const extraValue = document.getElementById("extra-value").value;
 
   if (
-    title.trim() === '' || 
-    extraName.trim() === '' || 
-    extraValue.trim() === ''){
+    title.trim() === "" ||
+    extraName.trim() === "" ||
+    extraValue.trim() === ""
+  ) {
     return;
   }
 
-addMovieBtn.addEventListener('click',);
-searchBtn.addEventListener('click',)
+  const newMovie = {
+    info: {
+      title: title,
+      [extraName]: extraValue,
+    },
+    id: Math.random(),
+  };
+  movies.push(newMovie);
+  console.log(newMovie, movies);
+};
+
+addMovieBtn.addEventListener("click", addMovieHandler);
+// searchBtn.addEventListener("click");
